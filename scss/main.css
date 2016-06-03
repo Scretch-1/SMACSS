@@ -1,0 +1,65 @@
+/*************************
+	All The Utilities styles
+*************************/
+/* Mixins *****************/
+/* Variables *****************/
+/*************************
+	All The Base styles
+*************************/
+/* Base *****************/
+a img {
+  border: none;
+}
+
+*::-webkit-input-placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+*:-moz-placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+*::-moz-placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+*:-ms-input-placeholder {
+  color: #666;
+  opacity: 1;
+}
+
+body {
+  font-family: "RobotoRegular", sans-serif;
+  font-size: 16px;
+}
+
+@font-face {
+  font-family: "RobotoRegular";
+  src: url("../fonts/RobotoRegular/RobotoRegular.eot");
+  src: url("../fonts/RobotoRegular/RobotoRegular.eot?#iefix") format("embedded-opentype"), url("../fonts/RobotoRegular/RobotoRegular.woff") format("woff"), url("../fonts/RobotoRegular/RobotoRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+/*************************
+	All The Modules styles
+*************************/
+/* Content *****************/
+/* Footer *****************/
+/* Header *****************/
+/* Icon *****************/
+/*************************
+	All The States styles
+*************************/
+/*************************
+	All The Layout styles
+*************************/
+/* Container *****************/
+/* Responsive *****************/
+/* Large display (large desktops) */
+/* Medium display (desktops) */
+/* Small display (tablets) */
+/* Extra small display (phones) */
+/* Tools *****************/

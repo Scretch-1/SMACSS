@@ -1,0 +1,261 @@
+// ----------------------- //
+// Mixins file ----------- //
+// ----------------------- //
+
+@mixin cfx {
+	&:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+	* html & { height: 1px }
+}
+
+// Стилизация placeholder
+@mixin place($cl) {
+	&::-webkit-input-placeholder {color:$cl;}
+	&::-moz-placeholder {color:$cl;}
+	&:-moz-placeholder {color:$cl;}
+	&:-ms-input-placeholder {color:$cl;}
+}
+
+// горизонтальное выравнивание для inline блока
+@mixin horizontal {
+	text-align: justify;
+	line-height: 0;
+	font-size: 0;
+	text-justify: newspaper;
+	zoom: 1;
+	text-align-last: justify;
+	&:after {
+		content: "";
+		display: inline-block;
+		width: 100%;
+		height: 0px;
+		visibility: hidden;
+		overflow: hidden;
+	}
+}
+// вертикальное выравнивание для inline блока 
+@mixin vertical {
+	text-align: center;
+	font-size: 0;
+	&:before {
+		content: "";
+		display: inline-block;
+		vertical-align: middle;
+		width: 0;
+		height: 100%;
+	}
+}
+// (тень блока)
+@mixin bsh($top, $left, $blur, $size, $color, $inset: false) {
+	@if $inset {
+		-webkit-box-shadow:inset $top $left $blur $size $color;
+		-moz-box-shadow:inset $top $left $blur $size $color;
+		box-shadow:inset $top $left $blur $size $color;
+		} @else {
+			-webkit-box-shadow: $top $left $blur $size $color;
+			-moz-box-shadow: $top $left $blur $size $color;
+			box-shadow: $top $left $blur $size $color;
+		}
+	}
+
+// тень текста
+@mixin ts($x, $y, $blur, $color) {
+  text-shadow: $x $y $blur $color;
+}
+
+// тень текста (множественный эффект)
+@mixin text-shadow($shadows...) {
+  text-shadow: $shadows;
+}
+
+// трансформация, плавный переход
+@mixin transit($what,$when,$how) {
+  -webkit-transition: $what $when $how;
+  -moz-transition: $what $when $how;
+  -ms-transition: $what $when $how;
+  -o-transition: $what $when $how;
+  transition: $what $when $how;
+}
+
+// (кнопка с градиентом)
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+@mixin button($color: $red, $text_color: $white) {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  padding: .5em 2em .55em;
+  @include rounded();
+  @include box-shadow(0, 1px, 2px, rgba(0, 0, 0, 0.2));
+  color: $text_color !important;
+  font-weight: bold;
+  border: solid 1px darken($color, 18%);
+  background: $color;
+  @include gradient(saturate($color, 15%), darken($color, 15%));
+ 
+  &:hover {
+    text-decoration: none;
+    background: saturate($color, 10%);
+    @include gradient(saturate($color, 5%), darken($color, 5%));
+  }
+ 
+  &:active {
+    position: relative;
+    top: 1px;
+    color: saturate($color, 15%);
+    @include gradient(saturate($color, 15%), lighten($color, 15%));
+  }
+}
+@mixin rounded($radius: 5px) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin gradient($from, $to) {
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+}
+
+// (кнопка color)
+@mixin btn {
+  display: inline-block;
+  border: 1px solid $black;
+  color: $black;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  padding: 6px 10px;
+  @include br(5px);
+  @include t-s($gray);
+  @include grad-l($gray, $gray);
+  &:hover {
+ 	 @include grad-l($gray, $gray);
+  }
+}
+
+// скругление универсальное
+@mixin br($rad) {
+	-webkit-border-radius: $rad;
+	-moz-border-radius: $rad;
+	-ms-border-radius: $rad;
+	border-radius: $rad;
+}
+// Скругление на каждый угол
+@mixin br-c($p1,$p2,$p3,$p4) {
+	-webkit-border-radius: $p1 $p2 $p3 $p4;
+	-moz-border-radius: $p1 $p2 $p3 $p4;
+	-ms-border-radius: $p1 $p2 $p3 $p4;
+	border-radius: $p1 $p2 $p3 $p4;
+}
+
+// Окружность с центрованным элементом
+@mixin round($w:80px, $bd:3px) {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	@include br($w/2);
+	height: $w;
+	width: $w;
+	border-width: $bd;
+	border-style: solid;
+	border-color: #464a4c;
+}
+
+// градиент линейный 
+@mixin grad-l($direction, $color-stops) {
+  background: nth(nth($color-stops, 1), 1);
+  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+  background: linear-gradient($direction, $color-stops);
+}
+
+// Бэкграунд на всю ширину экрана.
+@mixin cover-background($img-uri, $background-top:"center", $background-left:"center", $background-attachment:"fixed") {
+  background: url($img-uri) no-repeat unquote($background-top) unquote($background-left) unquote($background-attachment); 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;  
+}
+
+// Горизонтальная линия
+@mixin sep-h($w,$h,$color) {
+	&:after {
+		content: "";
+		display: block;
+		height: $h;
+		width: $w;
+		margin: 0 auto;
+		background-color: $color;
+	}
+}
+
+// Сброс параметров списка
+@mixin rul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+//Поведение при наведении на ссылку
+@mixin hov-a($under,$color) {
+	&:hover, &:focus {
+		text-decoration: $under;
+		color: $color;
+	}
+}
+
+// эффект при наведении
+@mixin hov1 {
+	&:hover {
+		opacity: 0.8;
+	}
+}
+@mixin hov2 {
+	transition: all .2s ease-out;
+	&:hover {
+		opacity: 0.8;
+		box-shadow: 0 0 5px 1px rgba(0,0,0,0.5);
+		transition: all .2s ease-out;
+	}
+}
+@mixin hov3($color,$alpha) {
+	transition: all .5s ease-out;
+	&:hover {
+	transition: all .2s ease-out;
+	background-color: rgba($color,$alpha);
+	cursor: pointer;
+	}
+}
+@mixin hov4($color,$alpha) {
+	transition: all .3s ease-in-out;
+	&:hover {
+		transition: all .1s ease-in-out;
+		-webkit-box-shadow: 0 0 3px $color;
+		-moz-box-shadow: 0 0 3px $color;
+		box-shadow: 0 0 3px $color;
+		opacity: $alpha;
+	}
+}
+// Конец эффектов при наведении
+
+// наложение прозрачности
+@mixin imp($color,$alpha) {
+	background: rgba($color,$alpha);
+}
