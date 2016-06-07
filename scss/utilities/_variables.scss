@@ -10,5 +10,52 @@ $gray: #878787;
 $green: #00ff00;
 $yellow: #fff200;
 $red: #ff0000;
-$length: 1250px;
+$length: 1250px; // настраиваем в случае с применением стиля .containers для статичной сетки
 $rob-r: 'RobotoRegular';
+
+//font-size
+$fz6: 0.375em;
+$fz7: 0.438em;
+$fz8: 0.5em;
+$fz9: 0.563em;
+$fz10: 0.625em;
+$fz11: 0.688em;
+$fz12: 0.75;
+$fz13: 0.813em;
+$fz14: 0.875em;
+$fz15: 0.938em;
+$fz16: 1em;
+$fz17: 1.063em;
+$fz18: 1.125em;
+$fz19: 1.188em;
+$fz20: 1.25em;
+
+
+//font-media
+$fm6: 1.4vw; 
+$fm7: 1.5vw;
+$fm8: 1.7vw;
+$fm9: 1.9vw;
+$fm10: 2.1vw;
+$fm11: 2.3vw;
+$fm12: 2.5vw;
+$fm13: 2.7vw;
+$fm14: 2.9vw;
+$fm15: 3.1vw;
+$fm16: 3.3vw;
+$fm17: 3.5vw;
+$fm18: 3.7vw;
+$fm19: 3.9vw;
+$fm20: 4.1vw;
+
+//font-size h1,h2,h3,h4,h5
+$fzh4: 1.414em;
+$fzh3: 1.999em;
+$fzh2: 2.827em;
+$fzh1: 3.998em;
+
+//font-size media h1,h2,h3,h4,h5
+$fmh4: 4.5vw;
+$fmh3: 5vw;
+$fmh2: 5.5vw;
+$fmh1: 6vw;

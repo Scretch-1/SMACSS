@@ -259,3 +259,12 @@
 @mixin imp($color,$alpha) {
 	background: rgba($color,$alpha);
 }
+
+//font media style 
+@mixin fms($fz: $fz16, $fm: $fm16) {
+	font-size: $fz;
+	//media font media style
+	@media screen and (max-width: 600px) {
+		font-size: $fm;
+	}
+}

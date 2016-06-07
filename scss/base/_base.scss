@@ -4,6 +4,33 @@
 @import 'compass/css3';
 @import 'compass/typography';
 
+html {font-size: $fz16;}
+
+body {
+	font-weight: 400;
+	line-height: 1.45;
+}
+
+p {margin-bottom: 1.3em;}
+
+h1, h2, h3, h4 {
+	font-weight: inherit;
+	line-height: 1.2;
+}
+
+h1 {
+	margin-top: 0;
+	font-size: $fzh1;
+}
+
+h2 {font-size: $fzh2;}
+
+h3 {font-size: $fzh3;}
+
+h4 {font-size: $fzh4;}
+
+small, .font_small {font-size: $fz14;}
+
 a img {
 	border: none;
 }
