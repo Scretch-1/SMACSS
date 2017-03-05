@@ -64,7 +64,7 @@
 	}
 
 // тень текста
-@mixin ts($x, $y, $blur, $color) {
+@mixin ts($x: 1px, $y: 1px, $blur: 2px, $color: $black) {
   text-shadow: $x $y $blur $color;
 }
 
@@ -74,7 +74,7 @@
 }
 
 // трансформация, плавный переход
-@mixin transit($what,$when,$how) {
+@mixin transit($what: all, $when: 0.3s, $how: ease) {
   -webkit-transition: $what $when $how;
   -moz-transition: $what $when $how;
   -ms-transition: $what $when $how;
@@ -143,7 +143,6 @@
   text-decoration: none;
   padding: 6px 10px;
   @include br(5px);
-  @include t-s($gray);
   @include grad-l($gray, $gray);
   &:hover {
  	 @include grad-l($gray, $gray);
@@ -214,7 +213,7 @@
 }
 
 //Поведение при наведении на ссылку
-@mixin hov-a($under,$color) {
+@mixin hov-a($under: none, $color: #002aff) {
 	&:hover, &:focus {
 		text-decoration: $under;
 		color: $color;
@@ -235,36 +234,73 @@
 		transition: all .2s ease-out;
 	}
 }
-@mixin hov3($color,$alpha) {
-	transition: all .5s ease-out;
-	&:hover {
-	transition: all .2s ease-out;
-	background-color: rgba($color,$alpha);
-	cursor: pointer;
-	}
-}
-@mixin hov4($color,$alpha) {
-	transition: all .3s ease-in-out;
-	&:hover {
-		transition: all .1s ease-in-out;
-		-webkit-box-shadow: 0 0 3px $color;
-		-moz-box-shadow: 0 0 3px $color;
-		box-shadow: 0 0 3px $color;
-		opacity: $alpha;
-	}
-}
 // Конец эффектов при наведении
 
-// наложение прозрачности
-@mixin imp($color,$alpha) {
-	background: rgba($color,$alpha);
-}
+// input style custom
+// пример: @include input($green,$black,$black,.5s);
 
-//font media style 
-@mixin fms($fz: $fz16, $fm: $fm16) {
-	font-size: $fz;
-	//media font media style
-	@media screen and (max-width: 600px) {
-		font-size: $fm;
+@mixin input($bsh: transparentize($blue,.3), $bdc: $gray, $pl: $gray, $timetransit: .15s){
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid $bdc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 0 1px $bdc;
+					box-shadow: inset 0 0 1px $bdc;
+	-webkit-transition: border-color ease-in-out $timetransit, -webkit-box-shadow ease-in-out $timetransit;
+			 -o-transition: border-color ease-in-out $timetransit, box-shadow ease-in-out $timetransit;
+					transition: border-color ease-in-out $timetransit, box-shadow ease-in-out $timetransit;
+	&:focus {
+		border-color: $bsh;
+		outline: 0;
+		-webkit-box-shadow: inset 0 0 1px $bdc, 0 0 8px $bsh;
+						box-shadow: inset 0 0 1px $bdc, 0 0 8px $bsh;
 	}
+	&::-moz-placeholder{
+		color: $pl;
+		opacity: 1;
+	}
+	&:-ms-input-placeholder{
+		color: $pl;
+	}
+	&::-webkit-input-placeholder{
+		color: $pl;
+	}
+	&::-ms-expand{
+		background-color: transparent;
+		border: 0;
+	}
+}
+//-end input style custom
+
+// цветовые примеси
+/* примеры:
+	body{
+		color: color(blue, normal,.8);
+	}
+	p{
+		color: color(orange);
+	}
+	blockquote{
+		color: color(blue);
+		background: color(orange, pale,.4);
+		border-color: color(orange, dark);
+	}
+*/
+
+@function color($group, $shade: normal, $transparency: 1){
+  @each $color in $color-stack {
+    $c-group: map-get($color, group);
+    $c-shade: map-get($color, id);
+
+    @if $group == map-get($color, group) and $shade == map-get($color, id){
+      @return rgba(map-get($color, color), $transparency);
+    }
+  }
 }

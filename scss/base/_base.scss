@@ -4,35 +4,13 @@
 @import 'compass/css3';
 @import 'compass/typography';
 
-html {font-size: $fz16;}
-
 body {
-	font-weight: 400;
-	line-height: 1.45;
-}
-
-p {margin-bottom: 1.3em;}
-
-h1, h2, h3, h4 {
-	font-weight: inherit;
-	line-height: 1.2;
-}
-
-h1 {
-	margin-top: 0;
-	font-size: $fzh1;
-}
-
-h2 {font-size: $fzh2;}
-
-h3 {font-size: $fzh3;}
-
-h4 {font-size: $fzh4;}
-
-small, .font_small {font-size: $fz14;}
-
-a img {
-	border: none;
+	font-size: 16px;
+	min-width: 320px;
+	position: relative;
+	line-height: 1.6;
+	font-family: $df;
+	overflow-x: hidden;
 }
 *::-webkit-input-placeholder {
 	color: #666;
@@ -50,14 +28,17 @@ a img {
 	color: #666;
 	opacity: 1;
 }
+a img {
+	border: none;
+}
 
 body input:focus:required:invalid,
-body textarea:focus:required:invalid {}
+body textarea:focus:required:invalid{
+	color: #666
+}
 body input:required:valid,
-body textarea:required:valid {}
-body {
-	font-family: "RobotoRegular", sans-serif;
-	font-size: 16px;
+body textarea:required:valid{
+	color: #666
 }
 
 @include font-face("RobotoRegular", font-files("../fonts/RobotoRegular/RobotoRegular.eot", "../fonts/RobotoRegular/RobotoRegular.woff", "../fonts/RobotoRegular/RobotoRegular.ttf"));
